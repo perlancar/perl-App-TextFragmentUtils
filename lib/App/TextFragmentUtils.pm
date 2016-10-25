@@ -8,7 +8,7 @@ use strict;
 use warnings;
 
 use Data::Clone;
-use File::Slurper;
+use File::Slurper qw(read_text);
 use Text::Fragment ();
 
 our %SPEC;
@@ -47,6 +47,19 @@ sub list_fragments {
 
     my $tf_args = _get_tf_args(%args);
     Text::Fragment::list_fragments(%$tf_args);
+}
+
+$SPEC{get_fragment} = do {
+    my $meta = clone $Text::Fragment::SPEC{get_fragment};
+    delete $meta->{args}{text};
+    $meta->{args}{filename} = $filename_arg,
+    $meta;
+};
+sub get_fragment {
+    my %args = @_;
+
+    my $tf_args = _get_tf_args(%args);
+    Text::Fragment::get_fragment(%$tf_args);
 }
 
 1;
