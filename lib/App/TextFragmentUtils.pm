@@ -39,7 +39,7 @@ sub _get_tf_args {
 $SPEC{list_fragments} = do {
     my $meta = clone $Text::Fragment::SPEC{list_fragments};
     delete $meta->{args}{text};
-    $meta->{args}{filename} = $filename_arg,
+    $meta->{args}{filename} = $filename_arg;
     $meta;
 };
 sub list_fragments {
@@ -52,7 +52,7 @@ sub list_fragments {
 $SPEC{get_fragment} = do {
     my $meta = clone $Text::Fragment::SPEC{get_fragment};
     delete $meta->{args}{text};
-    $meta->{args}{filename} = $filename_arg,
+    $meta->{args}{filename} = $filename_arg;
     $meta;
 };
 sub get_fragment {
